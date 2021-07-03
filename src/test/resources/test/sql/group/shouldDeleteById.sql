@@ -1,0 +1,1 @@
+insert into groups(id, name) values (1, '200');

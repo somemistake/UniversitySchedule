@@ -1,0 +1,1 @@
+insert into week_days(day) values ('1'), ('2'), ('3');

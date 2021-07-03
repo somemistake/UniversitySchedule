@@ -1,0 +1,1 @@
+insert into groups(id, name) values (100, '9');

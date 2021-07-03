@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Period Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $( function() {
+        $( "#datePickerStart" ).datepicker({ dateFormat: 'yy-mm-dd' });
+        $( "#datePickerFinish" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    } );
+    </script>
+</head>
+
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<div class="container">
+    <h1>Period Management System</h1>
+    <hr>
+    <h1>Edit Period</h1>
+    <form action="#" th:action="@{/periods/editPeriod}" th:object="${period}" method="post">
+        <input type="hidden" name="id" th:value="*{id}"/>
+        <div class="input-group date">
+            <input type="text"
+                   id="datePickerStart"
+                   name="periodStart"
+                   th:value="*{periodStart}"
+                   placeholder="Period Start">
+        </div>
+        <br>
+        <div class="input-group date">
+            <input type="text"
+                   id="datePickerFinish"
+                   name="periodFinish"
+                   th:value="*{periodFinish}"
+                   placeholder="Period Finish">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-info col-2">Edit Period</button>
+    </form>
+    <hr>
+    <a th:href="@{/periods}">Back to Periods List</a>
+</div>
+</body>
+</html>

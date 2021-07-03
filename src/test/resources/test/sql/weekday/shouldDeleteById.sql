@@ -1,0 +1,1 @@
+insert into week_days(id, day) values (1, '5');

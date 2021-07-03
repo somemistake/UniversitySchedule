@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Template Lesson Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<div class="container">
+    <h1>Template Lesson Management System</h1>
+    <hr>
+    <h1>Create Template Lesson</h1>
+    <form action="#" th:action="@{/templateLessons/createTemplateLesson}" th:object="${templateLesson}" method="post">
+        <div class="form-group col-md-4">
+            <select class="form-control" name="groupId">
+                <option disabled selected>Choose Group</option>
+                <option th:each="group : ${groups}"
+                        th:text="${group.name}"
+                        th:value="${group.id}"></option>
+            </select>
+            <br>
+            <select class="form-control" name="courseId">
+                <option disabled selected>Choose Course</option>
+                <option th:each="course : ${courses}"
+                        th:text="${course.name}"
+                        th:value="${course.id}"></option>
+            </select>
+            <br>
+            <select class="form-control" name="teacherId">
+                <option disabled selected>Choose Teacher</option>
+                <option th:each="teacher : ${teachers}"
+                        th:text="${teacher.lastName + ' ' + teacher.firstName}"
+                        th:value="${teacher.id}"></option>
+            </select>
+            <br>
+            <select class="form-control" name="audienceId">
+                <option disabled selected>Choose Audience</option>
+                <option th:each="audience : ${audiences}"
+                        th:text="${audience.number}"
+                        th:value="${audience.id}"></option>
+            </select>
+            <br>
+            <select class="form-control" name="timeSlotId">
+                <option disabled selected>Choose Time Slot</option>
+                <option th:each="timeSlot : ${timeSlots}"
+                        th:text="${timeSlot.slot}"
+                        th:value="${timeSlot.id}"></option>
+            </select>
+            <br>
+            <select class="form-control" name="weekDayId">
+                <option disabled selected>Choose Week Day</option>
+                <option th:each="weekDay : ${weekDays}"
+                        th:text="${weekDay.day}"
+                        th:value="${weekDay.id}"></option>
+            </select>
+            <br>
+            <select class="form-control" name="periodId">
+                <option disabled selected>Choose Period</option>
+                <option th:each="period : ${periods}"
+                        th:text="${period.periodStart + ' ' + period.periodFinish}"
+                        th:value="${period.id}"></option>
+            </select>
+            <span style="color:red" th:text="${exception != null} ?
+                    ${'Error: Conditions for creating were violated'}"></span>
+        </div>
+        <button type="submit" class="btn btn-info col-2">Create Template Lesson</button>
+    </form>
+    <hr>
+    <a th:href="@{/templateLessons}">Back to Template Lessons List</a>
+</div>
+</body>
+</html>

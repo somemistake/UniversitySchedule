@@ -1,0 +1,1 @@
+insert into time_slots(slot) values (1), (2), (3);

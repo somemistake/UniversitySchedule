@@ -1,0 +1,9 @@
+spring:
+  thymeleaf.cache: false
+  jpa:
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:postgresql://localhost:5433/university
+    username: postgres
+    password: GhjdthrfCt,z

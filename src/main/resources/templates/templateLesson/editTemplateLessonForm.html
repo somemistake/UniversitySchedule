@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Template Lesson Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<div class="container">
+    <h1>Template Lesson Management System</h1>
+    <hr>
+    <h1>Edit Template Lesson</h1>
+    <form action="#" th:action="@{/templateLessons/editTemplateLesson}" th:object="${templateLesson}" method="post">
+        <input type="hidden" name="id" th:value="*{id}"/>
+        <div class="form-group col-md-4">
+            <select class="form-control" name="groupId">
+                <option th:each="group : ${groups}"
+                        th:text="${group.name}"
+                        th:value="${group.id}"
+                        th:selected="${group.id} == *{group.id}"></option>
+            </select>
+            <br>
+            <select class="form-control" name="courseId">
+                <option th:each="course : ${courses}"
+                        th:text="${course.name}"
+                        th:value="${course.id}"
+                        th:selected="${course.id} == *{course.id}"></option>
+            </select>
+            <br>
+            <select class="form-control" name="teacherId">
+                <option th:each="teacher : ${teachers}"
+                        th:text="${teacher.lastName + ' ' + teacher.firstName}"
+                        th:value="${teacher.id}"
+                        th:selected="${teacher.id} == *{teacher.id}"></option>
+            </select>
+            <br>
+            <select class="form-control" name="audienceId">
+                <option th:each="audience : ${audiences}"
+                        th:text="${audience.number}"
+                        th:value="${audience.id}"
+                        th:selected="${audience.id} == *{audience.id}"></option>
+            </select>
+            <br>
+            <select class="form-control" name="timeSlotId">
+                <option th:each="timeSlot : ${timeSlots}"
+                        th:text="${timeSlot.slot}"
+                        th:value="${timeSlot.id}"
+                        th:selected="${timeSlot.id} == *{timeSlot.id}"></option>
+            </select>
+            <br>
+            <select class="form-control" name="weekDayId">
+                <option th:each="weekDay : ${weekDays}"
+                        th:text="${weekDay.day}"
+                        th:value="${weekDay.id}"
+                        th:selected="${weekDay.id} == *{weekDay.id}"></option>
+            </select>
+            <br>
+            <select class="form-control" name="periodId">
+                <option th:each="period : ${periods}"
+                        th:text="${period.periodStart + ' ' + period.periodFinish}"
+                        th:value="${period.id}"
+                        th:selected="${period.id} == *{period.id}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-info col-2">Edit Template Lesson</button>
+    </form>
+    <hr>
+    <a th:href="@{/templateLessons}">Back to Template Lessons List</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+insert into courses(id, name, description) values (100, '1', '1');

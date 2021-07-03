@@ -1,0 +1,1 @@
+insert into time_slots(id, slot) values (100, 3);

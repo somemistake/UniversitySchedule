@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Group Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<div class="container">
+    <h1>Group Management System</h1>
+    <hr>
+    <h1>Create Group</h1>
+    <form action="#" th:action="@{/groups/createGroup}" th:object="${group}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <input type="text" th:field="*{name}" placeholder="Enter Group Name"
+               class="form-control mb-4 col-4"/>
+        <span style="color:red" th:text="${exception != null} ?
+               ${'Error: Group name ' + exception.getGroup().getName() + ' already exists or input restrictions were violated'}"></span>
+        <br>
+        <button type="submit" class="btn btn-info col-2">Create Group</button>
+    </form>
+    <hr>
+    <a th:href="@{/groups}">Back to Groups List</a>
+</div>
+</body>
+</html>

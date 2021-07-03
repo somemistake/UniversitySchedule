@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Time Table Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<div class="container my-2">
+    <h1>Time Table Management System</h1>
+    <hr>
+    <h1 th:text="${'Time Table on ' + timeTable.date}"></h1>
+    <div>
+        <table border="1" class="table table-striped table-responsive-md">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th th:each="group : ${timeTable.groups}" th:text="${group}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="timeSlot : ${timeTable.timeSlots}">
+                <td th:text="${timeSlot.slot}"></td>
+                <td th:each="group : ${timeTable.groups}"
+                    th:text="${timeTable.schedule.get(group).get(timeSlot.slot - 1)}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+insert into teachers(id, first_name, last_name) values (100, '3', '3');

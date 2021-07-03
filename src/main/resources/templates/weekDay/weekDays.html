@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Week Day Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<div class="container my-2">
+    <h1>Week Day Management System</h1>
+    <hr>
+    <h1>Week Days List</h1>
+    <a th:href="@{weekDays/createWeekDayForm}" class="btn btn-primary btn-sm mb-3">Add Week Day</a>
+    <table border="1" class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Day</th>
+            <th>Services</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="weekDay : ${weekDays}">
+            <td th:text="${weekDay.getId()}"></td>
+            <td th:text="${weekDay.getDay()}"></td>
+            <td><a th:href="@{/weekDays/editWeekDayForm/{id}(id=${weekDay.id})}"
+                   class="btn btn-primary">Edit</a>
+                <a th:href="@{/weekDays/deleteWeekDay/{id}(id=${weekDay.id})}"
+                   class="btn btn-primary">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+</div>
+</body>
+</html>

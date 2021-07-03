@@ -1,0 +1,1 @@
+insert into periods(period_start, period_finish) values ('2000-01-01', '2000-02-01'), ('2000-03-01', '2000-04-01');

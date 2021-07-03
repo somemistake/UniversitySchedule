@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Time Slot Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<div class="container">
+    <h1>Time Slot Management System</h1>
+    <hr>
+    <h1>Create Time Slot</h1>
+    <form action="#" th:action="@{/timeSlots/createTimeSlot}" th:object="${timeSlot}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <input type="text" th:field="*{slot}" placeholder="Enter Slot Number"
+               class="form-control mb-4 col-4"/>
+        <button type="submit" class="btn btn-info col-2">Create Time Slot</button>
+    </form>
+    <hr>
+    <a th:href="@{/timeSlots}">Back to Time Slots List</a>
+</div>
+</body>
+</html>

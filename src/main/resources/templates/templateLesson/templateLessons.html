@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Template Lesson Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+<div class="container my-2">
+    <h1>Template Lesson Management System</h1>
+    <hr>
+    <h1>Template Lessons List</h1>
+    <a th:href="@{templateLessons/createTemplateLessonForm}" class="btn btn-primary btn-sm mb-3">Add Template Lesson</a>
+    <table border="1" class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Group</th>
+            <th>Course</th>
+            <th>Teacher</th>
+            <th>Audience</th>
+            <th>Time Slot</th>
+            <th>Week Day</th>
+            <th>Period</th>
+            <th>Services</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="templateLesson : ${templateLessons}">
+            <td th:text="${templateLesson.getId()}"></td>
+            <td th:text="${templateLesson.getGroup().getName()}"></td>
+            <td th:text="${templateLesson.getCourse().getName()}"></td>
+            <td th:text="${templateLesson.teacher.getLastName() + ' ' + templateLesson.getTeacher().getFirstName()}"></td>
+            <td th:text="${templateLesson.getAudience().getNumber()}"></td>
+            <td th:text="${templateLesson.getTimeSlot().getSlot()}"></td>
+            <td th:text="${templateLesson.getWeekDay().getDay()}"></td>
+            <td th:text="${templateLesson.getPeriod().getPeriodStart() + ' ' + templateLesson.getPeriod().getPeriodFinish()}"></td>
+            <td><a th:href="@{/templateLessons/editTemplateLessonForm/{id}(id=${templateLesson.id})}"
+                   class="btn btn-primary">Edit</a>
+                <a th:href="@{/templateLessons/deleteTemplateLesson/{id}(id=${templateLesson.id})}"
+                   class="btn btn-primary">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+</div>
+</body>
+</html>
